@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import FadeInSection from "@/components/FadeInSection";
 import { Shield, Award, Diamond } from "lucide-react";
-import spaImage from "@/assets/spa-massage.jpg";
+import spaImage from "@/spa/image.png";
 
 const Index = () => {
   return (
