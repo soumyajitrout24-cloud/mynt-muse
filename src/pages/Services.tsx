@@ -32,13 +32,9 @@ const Services = () => {
     <div className="bg-emerald-gradient min-h-screen pt-24 pb-16 px-6">
       <div className="container mx-auto max-w-4xl">
         <FadeInSection>
-          <div className="text-center mb-16">
-            <p className="font-elegant text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
-              What We Offer
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl tracking-wider text-primary">
-              Our Services
-            </h1>
+          <div className="text-center mb-12 md:mb-16">
+            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">What We Offer</p>
+            <h1 className="font-display text-3xl md:text-5xl tracking-wider text-primary">Our Services</h1>
             <div className="gold-divider w-20 mx-auto mt-4" />
           </div>
         </FadeInSection>
@@ -49,15 +45,13 @@ const Services = () => {
               <div className="gold-border-card rounded-xl overflow-hidden bg-card">
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="w-full px-6 py-5 flex items-center justify-between text-left"
+                  className="w-full px-5 md:px-6 py-4 md:py-5 flex items-center justify-between text-left"
                 >
-                  <h3 className="font-display text-lg md:text-xl text-primary tracking-wide">
-                    {service.title}
-                  </h3>
+                  <h3 className="font-display text-base md:text-xl text-primary tracking-wide pr-4">{service.title}</h3>
                   <motion.span
                     animate={{ rotate: openIndex === i ? 45 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-primary text-xl"
+                    className="text-primary text-lg md:text-xl flex-shrink-0"
                   >
                     +
                   </motion.span>
@@ -72,16 +66,11 @@ const Services = () => {
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 border-t border-primary/10 pt-4">
-                        <p className="font-elegant text-base text-primary/60 leading-relaxed mb-4">
-                          {service.description}
-                        </p>
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 border-t border-primary/10 pt-4">
+                        <p className="font-elegant text-sm md:text-base text-primary/55 leading-relaxed mb-4">{service.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {service.features.map((f) => (
-                            <span
-                              key={f}
-                              className="font-body text-xs tracking-wider uppercase px-3 py-1.5 border border-primary/20 rounded-full text-primary/50"
-                            >
+                            <span key={f} className="font-body text-[10px] md:text-xs tracking-wider uppercase px-3 py-1.5 border border-primary/20 rounded-full text-primary/50">
                               {f}
                             </span>
                           ))}

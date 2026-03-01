@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import logoLotus from "@/assets/logo-lotus.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -45,24 +44,12 @@ const Navbar = () => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3 }}
             onClick={() => setIsOpen(true)}
-            className="fixed top-6 left-6 z-[100] flex flex-col justify-center items-center w-12 h-12 gap-[6px] group rounded-full hover:scale-105 transition-transform duration-300"
+            className="fixed top-5 left-5 z-[100] flex flex-col justify-center items-center w-11 h-11 gap-[5px] group rounded-full border border-primary/20 bg-background/80 backdrop-blur-sm hover:border-primary/40 hover:scale-105 transition-all duration-300"
             aria-label="Open menu"
           >
-            <motion.span
-              className="block h-[1.5px] rounded-full bg-primary origin-center"
-              style={{ width: 26 }}
-              whileHover={{ width: 28 }}
-            />
-            <motion.span
-              className="block h-[1.5px] rounded-full bg-primary/70 origin-center"
-              style={{ width: 20 }}
-              whileHover={{ width: 28 }}
-            />
-            <motion.span
-              className="block h-[1.5px] rounded-full bg-primary/50 origin-center self-start ml-[2px]"
-              style={{ width: 14 }}
-              whileHover={{ width: 28 }}
-            />
+            <span className="block h-[2px] w-5 rounded-full bg-primary transition-all duration-300" />
+            <span className="block h-[2px] w-4 rounded-full bg-primary/70 transition-all duration-300" />
+            <span className="block h-[2px] w-3 rounded-full bg-primary/50 transition-all duration-300" />
           </motion.button>
         )}
       </AnimatePresence>
@@ -89,51 +76,48 @@ const Navbar = () => {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 left-0 z-[95] h-full w-[310px] max-w-[85vw] flex flex-col justify-center px-10 curved-navbar"
+            className="fixed top-0 left-0 z-[95] h-full w-[300px] max-w-[85vw] flex flex-col px-8 pt-20 pb-8"
             style={{
               background: "linear-gradient(180deg, hsl(158 65% 11%) 0%, hsl(156 62% 15%) 50%, hsl(158 65% 11%) 100%)",
-              borderRadius: "0 60px 60px 0",
+              borderRadius: "0 48px 48px 0",
               borderRight: "1px solid hsl(43 56% 42% / 0.35)",
-              boxShadow: "8px 0 60px hsl(0 0% 0% / 0.5), 4px 0 20px hsl(43 56% 52% / 0.08), inset -1px 0 0 hsl(43 56% 52% / 0.1)",
+              boxShadow: "8px 0 60px hsl(0 0% 0% / 0.5), 4px 0 20px hsl(43 56% 52% / 0.08)",
             }}
           >
-            {/* Subtle gold shine overlay */}
+            {/* Gold shine overlay */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                borderRadius: "0 60px 60px 0",
+                borderRadius: "0 48px 48px 0",
                 background: "linear-gradient(160deg, hsl(43 56% 52% / 0.04) 0%, transparent 40%, hsl(43 56% 52% / 0.02) 100%)",
               }}
             />
 
-            {/* Top bar: Brand + Close */}
-            <div className="absolute top-8 left-8 right-8 flex items-center justify-between">
-              <motion.div
+            {/* Top bar: Brand + Close — proper spacing */}
+            <div className="absolute top-6 left-6 right-6 flex items-center justify-between gap-4">
+              <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
-                className="flex items-center gap-2"
+                className="font-display text-sm tracking-[0.15em] text-primary gold-glow truncate"
               >
-                <img src={logoLotus} alt="Mynt Girlfriend" className="w-7 h-7 object-contain" />
-                <p className="font-display text-sm tracking-[0.2em] text-primary gold-glow">
-                  Mynt Girlfriend
-                </p>
-              </motion.div>
+                Mynt Girlfriend
+              </motion.p>
 
               <motion.button
                 initial={{ opacity: 0, rotate: -90 }}
                 animate={{ opacity: 1, rotate: 0 }}
                 transition={{ delay: 0.3, duration: 0.4 }}
                 onClick={() => setIsOpen(false)}
-                className="w-10 h-10 flex items-center justify-center rounded-full border border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
+                className="w-9 h-9 flex-shrink-0 flex items-center justify-center rounded-full border border-primary/20 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
                 aria-label="Close menu"
               >
                 <X className="w-4 h-4 text-primary" />
               </motion.button>
             </div>
 
-            {/* Nav Links */}
-            <ul className="space-y-1 relative mt-4">
+            {/* Nav Links — proper top margin to clear header */}
+            <ul className="space-y-0.5 relative mt-6 flex-1 flex flex-col justify-center">
               {navLinks.map((link, i) => (
                 <motion.li
                   key={link.path}
@@ -145,7 +129,7 @@ const Navbar = () => {
                   <Link
                     to={link.path}
                     onClick={() => setIsOpen(false)}
-                    className={`group/link flex items-center gap-3 py-2.5 font-elegant text-[17px] tracking-wider transition-all duration-400 ${
+                    className={`group/link flex items-center gap-3 py-2 font-elegant text-[15px] md:text-[16px] tracking-wider transition-all duration-300 ${
                       location.pathname === link.path
                         ? "text-primary pl-3"
                         : "text-primary/45 hover:text-primary hover:pl-3"
@@ -161,7 +145,7 @@ const Navbar = () => {
                     <span className="relative">
                       {link.label}
                       <span
-                        className={`absolute -bottom-0.5 left-0 h-[1px] bg-primary transition-all duration-400 ${
+                        className={`absolute -bottom-0.5 left-0 h-[1px] bg-primary transition-all duration-300 ${
                           location.pathname === link.path ? "w-full" : "w-0 group-hover/link:w-full"
                         }`}
                       />
@@ -176,17 +160,12 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9, duration: 0.5 }}
-              className="mt-10 relative"
+              className="mt-auto relative"
             >
-              <div className="gold-divider w-full mb-4" />
+              <div className="gold-divider w-full mb-3" />
               <p className="font-body text-[10px] tracking-[0.25em] uppercase text-primary/30">
                 Elite Representation
               </p>
-              <div className="flex gap-1.5 mt-3">
-                <span className="w-1 h-1 rounded-full bg-primary/20" />
-                <span className="w-1 h-1 rounded-full bg-primary/30" />
-                <span className="w-1 h-1 rounded-full bg-primary/20" />
-              </div>
             </motion.div>
           </motion.nav>
         )}

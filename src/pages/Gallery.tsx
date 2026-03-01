@@ -31,23 +31,19 @@ const Gallery = () => {
     <div className="bg-pink-page min-h-screen pt-24 pb-16 px-6">
       <div className="container mx-auto max-w-6xl">
         <FadeInSection>
-          <div className="text-center mb-6">
-            <p className="font-elegant text-sm tracking-[0.3em] uppercase text-emerald-dark/50 mb-3">
-              Our Portfolio
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl tracking-wider text-emerald-dark">
-              Gallery & Profiles
-            </h1>
+          <div className="text-center mb-5 md:mb-6">
+            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-emerald-dark/50 mb-3">Our Portfolio</p>
+            <h1 className="font-display text-3xl md:text-5xl tracking-wider text-emerald-dark">Gallery & Profiles</h1>
             <div className="h-[1px] w-20 mx-auto mt-4 bg-gradient-to-r from-transparent via-emerald-dark/40 to-transparent" />
           </div>
         </FadeInSection>
 
         <FadeInSection delay={0.1}>
-          <div className="text-center mb-12 max-w-2xl mx-auto">
-            <p className="font-elegant text-base text-emerald-dark/50 leading-relaxed mb-4">
-              Explore our carefully curated portfolio of models — each verified and presented with true, unedited images and professional details. No exaggerated claims, no filters — real profiles, real talent.
+          <div className="text-center mb-10 md:mb-12 max-w-2xl mx-auto">
+            <p className="font-elegant text-sm md:text-base text-emerald-dark/50 leading-relaxed mb-3">
+              Explore our carefully curated portfolio of models — each verified and presented with true, unedited images and professional details.
             </p>
-            <p className="font-elegant text-sm text-emerald-dark/40 italic">
+            <p className="font-elegant text-xs md:text-sm text-emerald-dark/40 italic">
               Full gallery access is available upon advance reservation and private consultation.
             </p>
           </div>
@@ -55,12 +51,12 @@ const Gallery = () => {
 
         {/* Filter Bar */}
         <FadeInSection delay={0.2}>
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 md:mb-12">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`font-body text-xs tracking-wider uppercase px-5 py-2.5 rounded-full border transition-all duration-300 ${
+                className={`font-body text-[10px] md:text-xs tracking-wider uppercase px-4 md:px-5 py-2 md:py-2.5 rounded-full border transition-all duration-300 ${
                   active === cat
                     ? "bg-gold text-emerald-dark border-gold"
                     : "border-gold/50 text-emerald-dark/60 hover:border-gold hover:text-emerald-dark"
@@ -73,7 +69,7 @@ const Gallery = () => {
         </FadeInSection>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <AnimatePresence mode="popLayout">
             {filtered.map((item) => (
               <motion.div
@@ -91,10 +87,10 @@ const Gallery = () => {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-emerald-dark/80 flex items-end p-4">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-emerald-dark/80 flex items-end p-3 md:p-4">
                   <div>
-                    <h3 className="font-display text-lg text-pink-page">{item.name}</h3>
-                    <p className="font-elegant text-xs tracking-wider text-pink-page/70">{item.desc}</p>
+                    <h3 className="font-display text-sm md:text-lg text-pink-page">{item.name}</h3>
+                    <p className="font-elegant text-[10px] md:text-xs tracking-wider text-pink-page/70">{item.desc}</p>
                   </div>
                 </div>
               </motion.div>
