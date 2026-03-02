@@ -98,7 +98,7 @@ const Contact = () => {
         </FadeInSection>
 
         {/* LOCATIONS */}
-        <FadeInSection delay={0.4}>
+        <FadeInSection delay={0.2}>
           <div className="text-center">
             <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
               Where We Operate

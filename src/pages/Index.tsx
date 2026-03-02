@@ -20,8 +20,12 @@ const Index = () => {
         <div className="container mx-auto max-w-5xl">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
-              <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">Our Promise</p>
-              <h2 className="font-display text-2xl md:text-4xl tracking-wider text-primary">What We Stand For</h2>
+              <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
+                Our Promise
+              </p>
+              <h2 className="font-display text-2xl md:text-4xl tracking-wider text-primary">
+                What We Stand For
+              </h2>
               <div className="gold-divider w-20 mx-auto mt-4" />
               <p className="font-elegant text-sm md:text-base text-primary/45 mt-4 max-w-lg mx-auto">
                 Every engagement is defined by three principles
@@ -31,15 +35,34 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-5 md:gap-8">
             {[
-              { icon: Shield, title: "Discretion", desc: "Your privacy is our highest priority. Every interaction remains strictly confidential." },
-              { icon: Award, title: "Excellence", desc: "We curate only the finest talent, ensuring an unparalleled standard of service." },
-              { icon: Diamond, title: "Exclusivity", desc: "Limited availability ensures personalized attention and extraordinary experiences." },
+              {
+                icon: Shield,
+                title: "Discretion",
+                desc: "Your privacy is our highest priority. Every interaction remains strictly confidential."
+              },
+              {
+                icon: Award,
+                title: "Excellence",
+                desc: "We curate only the finest talent, ensuring an unparalleled standard of service."
+              },
+              {
+                icon: Diamond,
+                title: "Exclusivity",
+                desc: "Limited availability ensures personalized attention and extraordinary experiences."
+              }
             ].map((item, i) => (
               <FadeInSection key={item.title} delay={i * 0.15}>
                 <div className="gold-border-card rounded-xl p-6 md:p-8 bg-card text-center">
-                  <item.icon className="w-7 h-7 md:w-8 md:h-8 text-primary mx-auto mb-4 md:mb-5" strokeWidth={1.2} />
-                  <h3 className="font-display text-lg md:text-xl text-primary mb-2 md:mb-3 tracking-wide">{item.title}</h3>
-                  <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">{item.desc}</p>
+                  <item.icon
+                    className="w-7 h-7 md:w-8 md:h-8 text-primary mx-auto mb-4 md:mb-5"
+                    strokeWidth={1.2}
+                  />
+                  <h3 className="font-display text-lg md:text-xl text-primary mb-2 md:mb-3 tracking-wide">
+                    {item.title}
+                  </h3>
+                  <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </FadeInSection>
             ))}
@@ -52,23 +75,43 @@ const Index = () => {
         <div className="container mx-auto max-w-5xl">
           <FadeInSection>
             <div className="text-center mb-12 md:mb-16">
-              <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">Our Difference</p>
-              <h2 className="font-display text-2xl md:text-4xl tracking-wider text-primary">Why Choose Us</h2>
+              <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
+                Our Difference
+              </p>
+              <h2 className="font-display text-2xl md:text-4xl tracking-wider text-primary">
+                Why Choose Us
+              </h2>
               <div className="gold-divider w-20 mx-auto mt-4" />
             </div>
           </FadeInSection>
 
           <div className="grid md:grid-cols-2 gap-5 md:gap-6">
             {[
-              { title: "Quality Over Quantity", desc: "We focus on delivering exceptional experiences — not mass volume. Each interaction is carefully personalized to ensure you get exactly what you expect, and often more." },
-              { title: "Authentic Presentations", desc: "All our model profiles are recent, verified, and genuine — no bait-and-switch, no heavy retouching." },
-              { title: "Advance Reservation Policy", desc: "To maintain exclusivity and high standards, we only accept bookings in advance. Same-day or last-minute confirmations are not guaranteed." },
-              { title: "Client-First Philosophy", desc: "Every client is important — but not every inquiry fits our premium framework. We align expectations early to ensure satisfaction and clarity." },
+              {
+                title: "Quality Over Quantity",
+                desc: "We focus on delivering exceptional experiences — not mass volume. Each interaction is carefully personalized to ensure you get exactly what you expect, and often more."
+              },
+              {
+                title: "Authentic Presentations",
+                desc: "All our model profiles are recent, verified, and genuine — no bait-and-switch, no heavy retouching."
+              },
+              {
+                title: "Advance Reservation Policy",
+                desc: "To maintain exclusivity and high standards, we only accept bookings in advance. Same-day or last-minute confirmations are not guaranteed."
+              },
+              {
+                title: "Client-First Philosophy",
+                desc: "Every client is important — but not every inquiry fits our premium framework. We align expectations early to ensure satisfaction and clarity."
+              }
             ].map((item, i) => (
               <FadeInSection key={item.title} delay={i * 0.1}>
                 <div className="gold-border-card rounded-xl p-6 md:p-8 bg-card">
-                  <h3 className="font-display text-base md:text-lg text-primary mb-2 md:mb-3 tracking-wide">{item.title}</h3>
-                  <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">{item.desc}</p>
+                  <h3 className="font-display text-base md:text-lg text-primary mb-2 md:mb-3 tracking-wide">
+                    {item.title}
+                  </h3>
+                  <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               </FadeInSection>
             ))}
@@ -83,7 +126,9 @@ const Index = () => {
             <div className="relative rounded-2xl overflow-hidden border border-primary/30 shadow-gold bg-card">
               <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 p-6 md:p-14">
                 <div className="flex-1 text-center md:text-left">
-                  <p className="font-body text-xs tracking-[0.3em] uppercase text-primary/40 mb-3">Coming Soon</p>
+                  <p className="font-body text-xs tracking-[0.3em] uppercase text-primary/40 mb-3">
+                    Coming Soon
+                  </p>
                   <h2 className="font-display text-2xl md:text-4xl tracking-wider text-primary mb-2 gold-glow">
                     Spa Massage
                   </h2>
@@ -119,7 +164,9 @@ const Index = () => {
               </p>
               <Link
                 to="/contact"
-                className="inline-block bg-primary text-primary-foreground font-body text-xs tracking-[0.2em] uppercase px-10 py-4 rounded-full hover:opacity-90 transition-opacity duration-300"
+                className="inline-block bg-gold text-emerald-900 font-body text-xs tracking-[0.2em] uppercase px-10 py-4 rounded-full
+                           shadow-[0_0_20px_rgba(255,215,0,0.5)] hover:shadow-[0_0_25px_rgba(255,215,0,0.7)]
+                           transition-all duration-300"
               >
                 Book Now
               </Link>

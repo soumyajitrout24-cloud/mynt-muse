@@ -24,6 +24,7 @@ import img128 from "@/assets/128.png";
 import img129 from "@/assets/129.png";
 import img130 from "@/assets/130.png";
 
+// Put images into an array
 const images = [
   img111,img112,img113,img114,img115,img116,img117,img118,img119,img120,
   img121,img122,img123,img124,img125,img126,img127,img128,img129,img130
@@ -52,16 +53,15 @@ const Gallery = () => {
 
         // Watermark in the center
         const text = "Mynt Girlfriend";
-        const fontSize = Math.floor(canvas.width / 10); // adjust size
+        const fontSize = Math.floor(canvas.width / 10);
         ctx.font = `${fontSize}px Arial`;
-        ctx.fillStyle = "rgba(255,255,255,0.4)"; // semi-transparent
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
 
-        // Optional: slightly rotate for signature effect
         ctx.save();
         ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(-0.1); // slight tilt
+        ctx.rotate(-0.1);
         ctx.fillText(text, 0, 0);
         ctx.restore();
 
@@ -97,9 +97,7 @@ const Gallery = () => {
             <p className="font-elegant text-sm md:text-base text-emerald-dark/50 leading-relaxed mb-3">
               Explore our carefully curated portfolio — images are watermarked for authenticity.
             </p>
-            <p className="font-elegant text-xs md:text-sm text-emerald-dark/40 italic">
-              Right-click → Save will include the signature watermark in the center.
-            </p>
+            {/* Removed Right-click → Save text */}
           </div>
         </FadeInSection>
 

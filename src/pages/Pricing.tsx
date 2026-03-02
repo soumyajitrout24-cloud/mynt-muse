@@ -49,21 +49,22 @@ const Pricing = () => {
       {/* Capsule WhatsApp CTA - Top Right */}
       {/* Luxurious WhatsApp CTA - Top Right */}
 {/* Premium Luxurious CTA - Top Right */}
+{/* Premium Luxurious CTA - Top Right */}
+{/* Premium Luxurious CTA - Top Right */}
 <a
   href="https://wa.me/YOUR_NUMBER?text=Hi!%20I%20want%20to%20inquire%20about%20Price%20%26%20Donations"
   target="_blank"
   className="
-    absolute top-6 right-6 
-    bg-gradient-to-b from-[#FFD700] to-[#E6C200] 
-    text-black font-display font-semibold 
-    px-2 py-3 rounded-full 
-    shadow-md 
-    flex items-center gap-3 
-    hover:scale-105 
-    transition-all duration-300 z-50
+    absolute top-6 right-6
+    bg-gold text-emerald-900 font-display font-semibold
+    px-4 py-3 rounded-full
+    shadow-[0_0_15px_rgba(255,215,0,0.5)]
+    flex items-center gap-2
+    hover:shadow-[0_0_25px_rgba(255,215,0,0.7)] 
+    hover:scale-105 transition-all duration-300 z-50
   "
 >
-  <Phone className="w-5 h-5" />
+  <Phone className="w-5 h-5 text-emerald-900" />
   Price & Donations
 </a>
 
