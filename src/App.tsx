@@ -16,7 +16,7 @@ import FAQ from "./pages/FAQ";
 import BookingPolicy from "./pages/BookingPolicy";
 import NotFound from "./pages/NotFound";
 import Loader from "@/components/Loader";
-import WhatsAppCTA from "@/components/WhatsappCta";; // <-- Import WhatsApp CTA
+import WhatsAppCTA from "@/components/WhatsAppCTA";
 
 import { useState, useEffect } from "react";
 
