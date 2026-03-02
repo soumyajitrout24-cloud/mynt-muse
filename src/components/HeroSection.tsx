@@ -4,7 +4,7 @@ import heroImage from "@/spa/hero_img.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden flex items-center">
+    <section className="relative w-full min-h-[110vh] overflow-hidden flex items-center">
 
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -15,13 +15,12 @@ const HeroSection = () => {
           loading="eager"
           fetchPriority="high"
         />
-        {/* Slightly darker overlay for gold contrast */}
+        {/* Dark overlay for gold contrast */}
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto mt-24 md:mt-32 text-gold">
-
+      <div className="relative z-10 text-center px-6 max-w-3xl mx-auto text-gold pt-24 pb-12 md:pb-16">
         {/* Tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -59,7 +58,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="font-body text-xs md:text-sm tracking-[0.2em] uppercase mb-4"
+          className="font-body text-sm md:text-base tracking-[0.2em] uppercase mb-4"
         >
           India's Premier Model Service for Discerning Clients
         </motion.p>
@@ -85,14 +84,14 @@ const HeroSection = () => {
         >
           <Link
             to="/contact"
-            className="bg-gold text-black font-body text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:opacity-90 transition duration-300"
+            className="bg-gold text-black font-body text-sm tracking-[0.2em] uppercase px-8 py-4 rounded-full hover:opacity-90 transition duration-300"
           >
             Book Consultation
           </Link>
 
           <Link
             to="/services"
-            className="border border-gold text-gold font-body text-xs tracking-[0.2em] uppercase px-8 py-3.5 rounded-full hover:bg-gold hover:text-black transition duration-300"
+            className="border border-gold text-gold font-body text-sm tracking-[0.2em] uppercase px-8 py-4 rounded-full hover:bg-gold hover:text-black transition duration-300"
           >
             View Services
           </Link>

@@ -11,7 +11,7 @@ const Index = () => {
       <HeroSection />
 
       {/* Marquee — extra top spacing */}
-      <div className="mt-6">
+      <div className="mt-0.25">
         <MarqueeStrip />
       </div>
 

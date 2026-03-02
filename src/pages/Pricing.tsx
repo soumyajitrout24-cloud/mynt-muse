@@ -1,46 +1,91 @@
-import { Check } from "lucide-react";
+import { Check, Phone } from "lucide-react";
 import FadeInSection from "@/components/FadeInSection";
 
 const plans = [
   {
-    name: "Silver",
-    subtitle: "Elegant Presence",
-    desc: "Best for private events, dinners, and social occasions",
-    features: ["High-quality talent", "Professional conduct", "Advance booking recommended"],
+    name: "Executive Hour",
+    subtitle: "Signature Introduction",
+    desc: "Refined, short-duration private engagement, ideal for business travelers or tight schedules.",
+    features: [
+      "Elegant, polished presence",
+      "Discreet and professional interaction",
+    ],
     tier: "silver" as const,
   },
   {
-    name: "Gold",
-    subtitle: "Premium Experience",
-    desc: "Extended engagement options",
-    features: ["High-end profiles", "Priority scheduling", "Extended engagement options"],
+    name: "Elite Experience",
+    subtitle: "Extended Engagement",
+    desc: "For clients who prefer unhurried time and elevated attention.",
+    features: [
+      "Relaxed and immersive engagement",
+      "Perfect for fine dining, private meetings, or exclusive evenings",
+      "Enhanced personalization",
+    ],
     tier: "gold" as const,
-    popular: true,
   },
   {
-    name: "Platinum",
-    subtitle: "Signature Engagement",
-    desc: "Top-tier talents with customized experiences",
-    features: ["Top-tier talents", "Customized experiences", "Travel extensions", "Premium support", "Dedicated concierge service"],
+    name: "Royal Evening",
+    subtitle: "Luxury Indulgence",
+    desc: "Complete, uninterrupted experience tailored for discerning individuals.",
+    features: [
+      "Premium time allocation",
+      "Elevated presence and attention to detail",
+      "Suitable for high-profile gatherings and private stays",
+    ],
     tier: "platinum" as const,
   },
 ];
 
+const addOns = [
+  "Priority scheduling",
+  "Advance profile reservation",
+  "Customized plan structuring",
+  "Private long-term arrangements",
+];
+
 const Pricing = () => {
   return (
-    <div className="bg-emerald-gradient min-h-screen pt-24 pb-16 px-6">
+    <div className="bg-emerald-gradient min-h-screen relative flex justify-center items-center px-6 py-16">
+      {/* Capsule WhatsApp CTA - Top Right */}
+      {/* Luxurious WhatsApp CTA - Top Right */}
+{/* Premium Luxurious CTA - Top Right */}
+<a
+  href="https://wa.me/YOUR_NUMBER?text=Hi!%20I%20want%20to%20inquire%20about%20Price%20%26%20Donations"
+  target="_blank"
+  className="
+    absolute top-6 right-6 
+    bg-gradient-to-b from-[#FFD700] to-[#E6C200] 
+    text-black font-display font-semibold 
+    px-2 py-3 rounded-full 
+    shadow-md 
+    flex items-center gap-3 
+    hover:scale-105 
+    transition-all duration-300 z-50
+  "
+>
+  <Phone className="w-5 h-5" />
+  Price & Donations
+</a>
+
+      {/* Centered Content */}
       <div className="container mx-auto max-w-5xl">
+        {/* Header */}
         <FadeInSection>
           <div className="text-center mb-12 md:mb-16">
-            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">Investment</p>
-            <h1 className="font-display text-3xl md:text-5xl tracking-wider text-primary">Pricing & Plans</h1>
+            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
+              Investment
+            </p>
+            <h1 className="font-display text-3xl md:text-5xl tracking-wider text-primary">
+              Pricing & Plans
+            </h1>
             <div className="gold-divider w-20 mx-auto mt-4" />
             <p className="font-elegant text-sm md:text-base text-primary/45 mt-4 max-w-lg mx-auto">
-              We offer tiered packages designed to fit different preferences and budgets while delivering premium value.
+              At Mynt Girlfriend, pricing reflects exclusivity, discretion, and uncompromising standards. We cater to individuals who value quality, privacy, and a seamless luxury experience.
             </p>
           </div>
         </FadeInSection>
 
+        {/* Plan Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 items-stretch">
           {plans.map((plan, i) => (
             <FadeInSection key={plan.name} delay={i * 0.15}>
@@ -53,12 +98,6 @@ const Pricing = () => {
                     : "border-primary/20 bg-card"
                 }`}
               >
-                {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground font-body text-[9px] md:text-[10px] tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
-                    Most Popular
-                  </div>
-                )}
-
                 <div className="mb-5 md:mb-6">
                   <h3 className="font-display text-xl md:text-2xl text-primary tracking-wide mb-1">{plan.name}</h3>
                   <p className="font-elegant text-sm md:text-base text-primary/60 italic">{plan.subtitle}</p>
@@ -68,11 +107,18 @@ const Pricing = () => {
 
                 <div className="gold-divider w-full mb-5 md:mb-6" />
 
-                <ul className="space-y-3 md:space-y-4 flex-1">
+                <ul className="space-y-4 flex-1">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="font-body text-xs md:text-sm text-primary/55 leading-relaxed">{f}</span>
+                    <li
+                      key={f}
+                      className={`flex items-center gap-3 p-2 rounded-lg transition hover:bg-primary/5`}
+                    >
+                      <Check
+                        className={`w-5 h-5 flex-shrink-0 ${
+                          plan.tier === "gold" ? "text-gold" : "text-primary/55"
+                        }`}
+                      />
+                      <span className="font-body text-sm text-primary/70 leading-relaxed">{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -81,10 +127,38 @@ const Pricing = () => {
           ))}
         </div>
 
+        {/* Travel & Add-ons Section */}
         <FadeInSection delay={0.5}>
-          <p className="text-center font-elegant text-xs md:text-sm text-primary/40 mt-8 md:mt-10 italic">
-            Exact pricing shared upon private inquiry. Discretion ensured.
-          </p>
+          <div className="mt-10 font-elegant text-sm md:text-base text-primary/45">
+            <h2 className="font-display text-xl md:text-2xl mb-3 text-gold">Travel & Outstation Experience</h2>
+            <p className="mb-3 text-primary/60">
+              Companion travel to premium locations, five-star accommodation required, customized itinerary planning. Pricing available upon private consultation.
+            </p>
+
+            <h2 className="font-display text-xl md:text-2xl mb-3 mt-6 text-gold">Exclusive Add-On Privileges</h2>
+            <ul className="list-disc list-inside space-y-2 text-primary/60">
+              {addOns.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+
+            <h2 className="font-display text-xl md:text-2xl mb-3 mt-6 text-gold">Booking Guidelines</h2>
+            <ul className="list-decimal list-inside space-y-2 text-primary/60">
+              <li>Select your preferred plan</li>
+              <li>Choose your desired profile</li>
+              <li>Reserve a premium hotel or verified private venue</li>
+              <li>Share confirmed date, time, and venue details</li>
+              <li>Secure your reservation as per confirmation process</li>
+            </ul>
+
+            <p className="mt-4 italic text-primary/50">
+              All engagements are reserved in advance and allocated on a priority basis. We do not compete on price; we operate on value. Mynt Girlfriend is curated for individuals who understand that exclusivity commands investment.
+            </p>
+
+            <p className="mt-4 italic text-primary/40 text-center">
+              Premium. Private. Precisely Executed. Exact pricing shared upon private inquiry. Discretion ensured.
+            </p>
+          </div>
         </FadeInSection>
       </div>
     </div>

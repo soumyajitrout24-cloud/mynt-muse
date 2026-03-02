@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ================= ROOT ================= */
+
 @layer base {
   :root {
     --background: 156 62% 15%;
@@ -12,26 +14,10 @@
     --card: 158 65% 11%;
     --card-foreground: 43 56% 52%;
 
-    --popover: 158 65% 11%;
-    --popover-foreground: 43 56% 52%;
-
     --primary: 43 56% 52%;
-    --primary-foreground: 156 62% 15%;
-
     --secondary: 156 50% 20%;
-    --secondary-foreground: 43 56% 52%;
-
-    --muted: 156 40% 18%;
-    --muted-foreground: 43 30% 65%;
-
-    --accent: 43 56% 52%;
-    --accent-foreground: 156 62% 15%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
 
     --border: 43 56% 52% / 0.2;
-    --input: 43 56% 52% / 0.2;
     --ring: 43 56% 52%;
 
     --radius: 0.5rem;
@@ -48,22 +34,17 @@
     --font-elegant: 'Cormorant Garamond', serif;
 
     --gradient-emerald: linear-gradient(180deg, hsl(156 62% 15%), hsl(158 65% 11%));
-    --gradient-emerald-horizontal: linear-gradient(90deg, hsl(156 62% 15%), hsl(158 65% 11%));
     --shadow-gold: 0 4px 30px hsl(43 56% 52% / 0.15);
     --shadow-luxury: 0 10px 40px hsl(0 0% 0% / 0.3);
-
-    --sidebar-background: 158 65% 11%;
-    --sidebar-foreground: 43 56% 52%;
-    --sidebar-primary: 43 56% 52%;
-    --sidebar-primary-foreground: 158 65% 11%;
-    --sidebar-accent: 156 50% 20%;
-    --sidebar-accent-foreground: 43 56% 52%;
-    --sidebar-border: 43 56% 52% / 0.2;
-    --sidebar-ring: 43 56% 52%;
   }
 }
 
+/* ================= GLOBAL TYPOGRAPHY FIX ================= */
+
 @layer base {
+ html {
+  font-size: 120%;
+}
   * {
     @apply border-border;
   }
@@ -71,14 +52,44 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400; /* upgraded from 300 */
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Luxury Heading Scale */
+
+  h1 {
+    @apply text-5xl md:text-6xl;
     font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  h2 {
+    @apply text-4xl;
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h3 {
+    @apply text-3xl;
+    font-family: var(--font-display);
+    font-weight: 500;
+  }
+
+  h4 {
+    @apply text-2xl;
+    font-family: var(--font-display);
+  }
+
+  p {
+    @apply text-lg;
   }
 
   ::selection {
@@ -86,6 +97,8 @@
     color: hsl(var(--gold));
   }
 }
+
+/* ================= COMPONENTS ================= */
 
 @layer components {
   .bg-emerald-gradient {
@@ -109,7 +122,8 @@
   }
 
   .gold-glow {
-    text-shadow: 0 0 20px hsl(var(--gold-glow)), 0 0 40px hsl(var(--gold-glow));
+    text-shadow: 0 0 20px hsl(var(--gold-glow)),
+                 0 0 40px hsl(var(--gold-glow));
   }
 
   .shadow-gold {
@@ -154,11 +168,42 @@
 
   .gold-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold)),
+      transparent
+    );
   }
 }
 
-/* Scrollbar */
+/* ================= METALLIC TEXT ================= */
+
+.gold-metallic {
+  background: linear-gradient(
+    135deg,
+    #fff8dc 0%,
+    hsl(var(--gold)) 25%,
+    #ffffff 40%,
+    hsl(var(--gold)) 55%,
+    #c9a227 75%,
+    hsl(var(--gold)) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s ease-in-out infinite;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ================= SCROLLBAR ================= */
+
 ::-webkit-scrollbar {
   width: 6px;
 }

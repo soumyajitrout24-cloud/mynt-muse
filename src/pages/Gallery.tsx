@@ -1,62 +1,83 @@
-import { useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import FadeInSection from "@/components/FadeInSection";
 
-const categories = [
-  "All",
-  "High Fashion Models",
-  "Event Hosts",
-  "Brand Ambassadors",
-  "Lifestyle Models",
+// Import images 111–130
+import img111 from "@/assets/111.jpeg";
+import img112 from "@/assets/112.jpeg";
+import img113 from "@/assets/113.png";
+import img114 from "@/assets/114.png";
+import img115 from "@/assets/115.png";
+import img116 from "@/assets/116.png";
+import img117 from "@/assets/117.png";
+import img118 from "@/assets/118.png";
+import img119 from "@/assets/119.png";
+import img120 from "@/assets/120.png";
+import img121 from "@/assets/121.png";
+import img122 from "@/assets/122.png";
+import img123 from "@/assets/123.png";
+import img124 from "@/assets/124.png";
+import img125 from "@/assets/125.png";
+import img126 from "@/assets/126.png";
+import img127 from "@/assets/127.png";
+import img128 from "@/assets/128.png";
+import img129 from "@/assets/129.png";
+import img130 from "@/assets/130.png";
+
+const images = [
+  img111,img112,img113,img114,img115,img116,img117,img118,img119,img120,
+  img121,img122,img123,img124,img125,img126,img127,img128,img129,img130
 ];
-
-// AUTO IMPORT ALL IMAGES FROM ASSETS (FAST)
-const images = Object.values(
-  import.meta.glob("@/assets/*.{jpg,jpeg,png}", { eager: true })
-).map((img) => (img as { default: string }).default);
-
-// RANDOM NAMES
-const names = [
-  "Aisha K.","Riya S.","Meera V.","Ananya D.","Kavya R.","Zara M.","Nisha P.","Ira T.",
-  "Sana K.","Pooja V.","Simran R.","Alina S.","Diya M.","Ritika P.","Tanya R.","Maya K.",
-];
-
-// RANDOM DESCRIPTIONS
-const descriptions = [
-  "Editorial Model","Luxury Events","Fashion Shoots","Premium Hosting","Brand Campaigns",
-  "Lifestyle Sessions","Elite Appearances",
-];
-
-// RANDOM CATEGORY LIST
-const categoryList = [
-  "High Fashion Models","Event Hosts","Brand Ambassadors","Lifestyle Models",
-];
-
-// GENERATE GALLERY ONCE (FAST)
-const generateGallery = () => {
-  const items = images.map((img, index) => ({
-    id: index + 1,
-    category: categoryList[Math.floor(Math.random() * categoryList.length)],
-    name: names[Math.floor(Math.random() * names.length)],
-    desc: descriptions[Math.floor(Math.random() * descriptions.length)],
-    image: img,
-  }));
-
-  return items.sort(() => Math.random() - 0.5);
-};
 
 const Gallery = () => {
-  const [active, setActive] = useState("All");
-  const galleryItems = useMemo(() => generateGallery(), []);
+  const [watermarkedImages, setWatermarkedImages] = useState<string[]>([]);
 
-  const filtered =
-    active === "All"
-      ? galleryItems
-      : galleryItems.filter((g) => g.category === active);
+  useEffect(() => {
+    const generateWatermarkedImages = async () => {
+      const wmImages: string[] = [];
+
+      for (let src of images) {
+        const img = new Image();
+        img.src = src;
+        await new Promise((res) => (img.onload = res));
+
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) continue;
+
+        // Draw original image
+        ctx.drawImage(img, 0, 0);
+
+        // Watermark in the center
+        const text = "Mynt Girlfriend";
+        const fontSize = Math.floor(canvas.width / 10); // adjust size
+        ctx.font = `${fontSize}px Arial`;
+        ctx.fillStyle = "rgba(255,255,255,0.4)"; // semi-transparent
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // Optional: slightly rotate for signature effect
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.rotate(-0.1); // slight tilt
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
+
+        wmImages.push(canvas.toDataURL("image/png"));
+      }
+
+      setWatermarkedImages(wmImages);
+    };
+
+    generateWatermarkedImages();
+  }, []);
 
   return (
     <div className="bg-pink-page min-h-screen pt-24 pb-16 px-6">
       <div className="container mx-auto max-w-6xl">
+
         {/* Title */}
         <FadeInSection>
           <div className="text-center mb-5 md:mb-6">
@@ -74,69 +95,34 @@ const Gallery = () => {
         <FadeInSection delay={0.1}>
           <div className="text-center mb-10 md:mb-12 max-w-2xl mx-auto">
             <p className="font-elegant text-sm md:text-base text-emerald-dark/50 leading-relaxed mb-3">
-              Explore our carefully curated portfolio of models — each verified and presented with true, unedited images and professional details.
+              Explore our carefully curated portfolio — images are watermarked for authenticity.
             </p>
             <p className="font-elegant text-xs md:text-sm text-emerald-dark/40 italic">
-              Full gallery access is available upon advance reservation and private consultation.
+              Right-click → Save will include the signature watermark in the center.
             </p>
-          </div>
-        </FadeInSection>
-
-        {/* Filter Buttons */}
-        <FadeInSection delay={0.2}>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10 md:mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`font-body text-[10px] md:text-xs tracking-wider uppercase px-4 md:px-5 py-2 md:py-2.5 rounded-full border transition-all duration-300 ${
-                  active === cat
-                    ? "bg-gold text-emerald-dark border-gold"
-                    : "border-gold/50 text-emerald-dark/60 hover:border-gold hover:text-emerald-dark"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
           </div>
         </FadeInSection>
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           <AnimatePresence mode="popLayout">
-            {filtered.map((item) => (
+            {watermarkedImages.map((src, index) => (
               <motion.div
-                key={item.id}
+                key={index}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="group relative aspect-[3/4] rounded-xl overflow-hidden border border-gold/20"
+                className="relative group aspect-[3/4] rounded-xl overflow-hidden border border-gold/20"
               >
-                {/* Image */}
                 <img
-                  src={item.image}
-                  alt={`${item.name} - ${item.desc}`}
+                  src={src}
+                  alt={`Gallery Image ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
-
-                {/* Top half blur overlay */}
-                <div className="absolute top-0 left-0 w-full h-1/2 backdrop-blur-md bg-white/20 pointer-events-none"></div>
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-emerald-dark/80 flex items-end p-3 md:p-4">
-                  <div>
-                    <h3 className="font-display text-sm md:text-lg text-pink-page">
-                      {item.name}
-                    </h3>
-                    <p className="font-elegant text-[10px] md:text-xs tracking-wider text-pink-page/70">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
               </motion.div>
             ))}
           </AnimatePresence>

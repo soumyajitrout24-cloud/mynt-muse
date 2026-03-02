@@ -1,41 +1,151 @@
 import FadeInSection from "@/components/FadeInSection";
 
 const BookingPolicy = () => {
+  const steps = [
+    {
+      icon: "⭐",
+      title: "Choose the Service Plan",
+      description: "Select the engagement duration or service plan that best suits your schedule and preferences.",
+    },
+    {
+      icon: "👤",
+      title: "Choose the Profile",
+      description: "Browse our exclusive profiles and select your preferred companion. Each profile is available based on prior reservation and scheduling.",
+    },
+    {
+      icon: "📅",
+      title: "Share Your Schedule",
+      description: (
+        <>
+          Kindly provide:
+          <ul className="list-disc list-inside ml-5 mt-1">
+            <li>Preferred date</li>
+            <li>Exact meeting time</li>
+            <li>Duration of engagement</li>
+            <li>City and location</li>
+          </ul>
+          Advance notice is highly recommended to secure your desired profile and time slot.
+        </>
+      ),
+    },
+    {
+      icon: "🏨",
+      title: "Book a Star Hotel or Premium Venue",
+      description: (
+        <>
+          For comfort, privacy, and safety, we require:
+          <ul className="list-disc list-inside ml-5 mt-1">
+            <li>Reservation at a reputed 4-star or 5-star hotel OR Verified premium private venue</li>
+          </ul>
+          Once booked, please share:
+          <ul className="list-disc list-inside ml-5 mt-1">
+            <li>Hotel name</li>
+            <li>Reservation name</li>
+            <li>Room number (shared closer to appointment time)</li>
+          </ul>
+          Clear venue details are mandatory prior to confirmation.
+        </>
+      ),
+    },
+    {
+      icon: "📝",
+      title: "Share Complete Details",
+      description: "To process your booking smoothly, please confirm: Chosen profile, Selected service plan, Confirmed venue details, Date & time. Incomplete information may delay confirmation.",
+    },
+    {
+      icon: "⏱️",
+      title: "Reserve Your Profile & Time Slot",
+      description: "All appointments are secured only after reservation confirmation. Profiles and time slots are allocated on a first-confirmed basis. Early planning ensures availability and priority scheduling.",
+    },
+  ];
+
+  const notes = [
+    "Professional conduct and mutual respect are expected at all times.",
+    "Discretion and privacy are strictly maintained.",
+    "Last-minute changes are subject to availability.",
+    "We reserve the right to decline incomplete or unclear requests.",
+  ];
+
   return (
-    <div className="bg-emerald-gradient min-h-screen pt-24 pb-16 px-6">
-      <div className="container mx-auto max-w-3xl">
+    <div className="bg-emerald-gradient min-h-screen pt-24 pb-16 px-6 relative overflow-hidden">
+      {/* Background glowing circles */}
+      <div className="absolute w-96 h-96 rounded-full bg-primary/10 blur-3xl top-20 left-1/4 pointer-events-none"></div>
+      <div className="absolute w-80 h-80 rounded-full bg-primary/10 blur-3xl bottom-32 right-1/4 pointer-events-none"></div>
+
+      <div className="container mx-auto max-w-5xl relative z-10">
+        {/* Header */}
         <FadeInSection>
-          <div className="text-center mb-12 md:mb-14">
-            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">Terms</p>
-            <h1 className="font-display text-3xl md:text-5xl tracking-wider text-primary">Booking Policy</h1>
-            <div className="gold-divider w-20 mx-auto mt-4" />
+          <div className="text-center mb-12 md:mb-16">
+            <p className="font-elegant text-xs md:text-sm tracking-[0.3em] uppercase text-primary/50 mb-3">
+              Terms
+            </p>
+            <h1 className="font-display text-4xl md:text-6xl tracking-wider text-primary">
+              Booking Policy
+            </h1>
+            <div className="w-24 h-1 mx-auto mt-4 bg-gradient-to-r from-yellow-400 to-yellow-200 rounded-full" />
           </div>
         </FadeInSection>
 
+        {/* Intro */}
         <FadeInSection delay={0.2}>
-          <div className="gold-border-card rounded-xl p-6 md:p-8 bg-card mb-6 md:mb-8">
+          <div className="bg-card rounded-3xl p-8 md:p-12 mb-16 shadow-xl border border-yellow-400/20">
             <p className="font-elegant text-base md:text-lg text-primary/60 leading-relaxed text-center">
-              To deliver consistency and quality without disappointment:
+              At Mynt Girlfriend, every engagement is curated with discretion, professionalism, and attention to detail. To ensure a seamless and refined experience, kindly follow the booking process outlined below.
             </p>
           </div>
+        </FadeInSection>
 
-          <div className="space-y-3 md:space-y-4">
-            {[
-              "Advance reservations are mandatory.",
-              "Same-day confirmations cannot be guaranteed.",
-              "Once a profile is reserved it cannot be held indefinitely without confirmation.",
-              "High-ticket experiences require prior planning.",
-            ].map((item, i) => (
-              <div key={i} className="gold-border-card rounded-xl p-5 md:p-6 bg-card flex items-start gap-3 md:gap-4">
-                <span className="text-primary mt-0.5 text-xs md:text-sm">✦</span>
-                <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">{item}</p>
-              </div>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical gold line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-yellow-400 to-yellow-200 rounded-full"></div>
+
+          <div className="space-y-16">
+            {steps.map((step, i) => (
+              <FadeInSection key={i} delay={0.2 + i * 0.1}>
+                <div className={`flex items-start ${i % 2 === 0 ? 'justify-start md:justify-end' : 'justify-end md:justify-start'} relative`}>
+                  {/* Step Card */}
+                  <div className="max-w-md bg-card rounded-3xl p-6 md:p-8 shadow-2xl border border-yellow-400/20 hover:scale-105 transition-transform duration-300 relative z-10">
+                    <div className="flex items-center mb-3">
+                      <div className="text-yellow-400 text-2xl mr-3">{step.icon}</div>
+                      <h3 className="font-display text-lg md:text-xl text-primary font-semibold">{step.title}</h3>
+                    </div>
+                    <div className="font-elegant text-sm md:text-base text-primary/60 leading-relaxed">
+                      {step.description}
+                    </div>
+                  </div>
+
+                  {/* Circular Badge */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 top-8 w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-200 flex items-center justify-center text-2xl font-bold text-primary shadow-lg border-4 border-yellow-400">
+                    {i + 1}
+                  </div>
+                </div>
+              </FadeInSection>
             ))}
           </div>
+        </div>
 
-          <div className="gold-border-card rounded-xl p-6 md:p-8 bg-card mt-6 md:mt-8 text-center">
-            <p className="font-elegant text-sm md:text-base text-primary/50 leading-relaxed">
-              If you're ready to secure your preferred model or experience, we recommend booking early to avoid availability issues.
+        {/* Important Notes */}
+        <FadeInSection delay={0.5}>
+          <div className="bg-card rounded-3xl p-8 md:p-12 mt-24 shadow-2xl border border-yellow-400/20">
+            <h2 className="font-display text-2xl md:text-3xl text-primary mb-6 text-center">Important Notes</h2>
+            <ul className="list-disc list-inside space-y-3 font-elegant text-primary/60 text-base md:text-lg leading-relaxed">
+              {notes.map((note, i) => (
+                <li key={i}>{note}</li>
+              ))}
+            </ul>
+          </div>
+        </FadeInSection>
+
+        {/* Commitment */}
+        <FadeInSection delay={0.5}>
+          <div className="bg-card rounded-3xl p-8 md:p-12 mt-16 shadow-2xl border border-yellow-400/20 text-center">
+            <h2 className="font-display text-2xl md:text-3xl text-primary mb-4">Our Commitment</h2>
+            <p className="font-elegant text-base md:text-lg text-primary/60 leading-relaxed">
+              We deliver a refined, private, and seamless companionship experience tailored for discerning individuals who value elegance, privacy, and premium standards.
+            </p>
+            <p className="font-elegant text-base md:text-lg text-primary/60 leading-relaxed mt-2">
+              Plan in advance. Book with clarity. Experience exclusivity.
             </p>
           </div>
         </FadeInSection>

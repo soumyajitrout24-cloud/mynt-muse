@@ -3,8 +3,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Loader from "@/components/Loader";
+import WhatsAppCTA from "@/components/WhatsAppCTA";
+
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -15,8 +19,9 @@ import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import BookingPolicy from "./pages/BookingPolicy";
 import NotFound from "./pages/NotFound";
-import Loader from "@/components/Loader";
-import WhatsAppCTA from "@/components/WhatsAppCTA";
+
+// ✅ NEW LOCATION PAGE IMPORT
+import LocationPage from "./pages/locations/LocationPage";
 
 import { useState, useEffect } from "react";
 
@@ -26,9 +31,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Show Loader First
@@ -55,6 +62,10 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/booking-policy" element={<BookingPolicy />} />
+
+            {/* ✅ NEW DYNAMIC LOCATION ROUTE */}
+            <Route path="/locations/:city" element={<LocationPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
 
