@@ -20,8 +20,6 @@ import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import BookingPolicy from "./pages/BookingPolicy";
 import NotFound from "./pages/NotFound";
-
-// ✅ NEW LOCATION PAGE IMPORT
 import LocationPage from "./pages/locations/LocationPage";
 
 import { useState, useEffect } from "react";
@@ -31,6 +29,60 @@ const queryClient = new QueryClient();
 function App() {
   const [loading, setLoading] = useState(true);
 
+  // 🔐 GLOBAL PROTECTION EFFECT
+  useEffect(() => {
+    // Disable right click
+    const handleContextMenu = (e: MouseEvent) => {
+      e.preventDefault();
+    };
+
+    // Disable common shortcuts
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey && ["c", "u", "s"].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i") ||
+        (e.metaKey && e.key.toLowerCase() === "c") // Mac
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    // Basic DevTools detection (deterrent only)
+    const detectDevTools = () => {
+      const threshold = 160;
+      if (
+        window.outerWidth - window.innerWidth > threshold ||
+        window.outerHeight - window.innerHeight > threshold
+      ) {
+        document.body.innerHTML = `
+          <div style="
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#0f0f0f;
+            color:#d4af37;
+            font-size:24px;
+            font-family:sans-serif;
+          ">
+            Developer tools are not allowed.
+          </div>
+        `;
+      }
+    };
+
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", detectDevTools);
+
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", detectDevTools);
+    };
+  }, []);
+
+  // Loader timer
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -39,7 +91,6 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Show Loader First
   if (loading) {
     return <Loader />;
   }
@@ -64,16 +115,11 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/booking-policy" element={<BookingPolicy />} />
-
-            {/* ✅ NEW DYNAMIC LOCATION ROUTE */}
             <Route path="/locations/:city" element={<LocationPage />} />
-
             <Route path="*" element={<NotFound />} />
           </Routes>
 
           <Footer />
-
-          {/* WhatsApp CTA - sticky on all pages */}
           <WhatsAppCTA />
         </BrowserRouter>
       </TooltipProvider>

@@ -39,12 +39,14 @@
   }
 }
 
-/* ================= GLOBAL TYPOGRAPHY FIX ================= */
+/* ================= GLOBAL BASE ================= */
 
 @layer base {
- html {
-  font-size: 120%;
-}
+
+  html {
+    font-size: 120%;
+  }
+
   * {
     @apply border-border;
   }
@@ -52,13 +54,30 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    font-weight: 400; /* upgraded from 300 */
+    font-weight: 400;
     line-height: 1.7;
     letter-spacing: 0.3px;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+
+    /* 🔐 CONTENT PROTECTION */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+    -webkit-touch-callout: none;
+  }
+
+  a, button {
+    pointer-events: auto;
   }
 
   /* Luxury Heading Scale */
@@ -101,6 +120,7 @@
 /* ================= COMPONENTS ================= */
 
 @layer components {
+
   .bg-emerald-gradient {
     background: var(--gradient-emerald);
   }
@@ -202,6 +222,55 @@
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+/* ================= WATERMARK SYSTEM ================= */
+
+.protected-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.protected-image-wrapper img {
+  width: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.luxury-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 6px;
+  color: hsl(var(--gold) / 0.18);
+
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.luxury-watermark-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+
+  background-image: repeating-linear-gradient(
+    -30deg,
+    transparent 0px,
+    transparent 80px,
+    hsl(var(--gold) / 0.12) 80px,
+    hsl(var(--gold) / 0.12) 82px
+  );
+}
+
+/* Allow interaction override */
+.allow-interaction {
+  pointer-events: auto !important;
 }
 
 /* ================= SCROLLBAR ================= */

@@ -1,21 +1,30 @@
 import React from "react";
-import WhatsAppLogo from "@/spa/wa_logo.png"; // your WhatsApp logo
+import WhatsAppLogo from "@/spa/wa_logo.png";
 
 const WhatsAppCTA = () => {
-  const phoneNumber = "YOUR_PHONE_NUMBER"; // e.g., 919876543210
-  const message = encodeURIComponent("Hi! I would like to know more."); // default message
+  const phoneNumber = "YOUR_PHONE_NUMBER";
+  const message = encodeURIComponent("Hi! I would like to know more.");
 
   return (
     <a
       href={`https://wa.me/${phoneNumber}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 right-5 z-50 w-20 h-20 md:w-16 md:h-16 rounded-full overflow-hidden shadow-lg hover:scale-110 transition-transform"
+      className="
+        fixed bottom-4 right-4 z-50
+        w-12 h-12
+        sm:w-14 sm:h-14
+        md:w-16 md:h-16
+        rounded-full
+        overflow-hidden
+        hover:scale-110
+        transition-transform duration-300
+      "
     >
       <img
         src={WhatsAppLogo}
         alt="WhatsApp"
-        className="w-full h-full object-cover"
+        className="w-full h-full object-cover allow-interaction"
       />
     </a>
   );
