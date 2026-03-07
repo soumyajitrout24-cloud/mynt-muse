@@ -9,7 +9,7 @@ const Contact = () => {
 
   const handleWhatsApp = () => {
     window.open(
-      `https://wa.me/919999999999?text=${encodeURIComponent(
+      `https://wa.me/919686239724?text=${encodeURIComponent(
         "Hi, I'd like to enquire about Mynt Girlfriend services."
       )}`,
       "_blank",
@@ -19,6 +19,19 @@ const Contact = () => {
 
   const handleLocationClick = (city: string) => {
     navigate(`/locations/${city.toLowerCase()}`);
+  };
+
+  const handleEmailClick = () => {
+    const subject = "Enquiry - Mynt Girlfriend";
+
+    // Multi-line formatted message
+    const body = `Hi Team,%0A%0AI am interested in your Mynt Girlfriend services and would like to know more.%0A%0APlease find my details below:%0A- Name:%0A- Contact Number:%0A- Preferred Date:%0A- Any special requests:%0A%0AThank you for your time.%0ABest regards,%0A[Your Name]`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=myntgirlfriend@gmail.com&su=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
+
+    window.open(gmailUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -64,9 +77,9 @@ const Contact = () => {
             </button>
 
             {/* Email */}
-            <a
-              href="mailto:contact@myntgirlfriend.com?subject=Enquiry%20-%20Mynt%20Girlfriend"
-              className="gold-border-card rounded-xl p-6 md:p-8 bg-card flex flex-col items-center gap-3 md:gap-4 transition-transform duration-300 hover:-translate-y-1"
+            <button
+              onClick={handleEmailClick}
+              className="gold-border-card rounded-xl p-6 md:p-8 bg-card flex flex-col items-center gap-3 md:gap-4 cursor-pointer transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-primary/30 flex items-center justify-center">
                 <Mail className="w-5 h-5 md:w-6 md:h-6 text-primary" />
@@ -75,13 +88,13 @@ const Contact = () => {
                 Email
               </h3>
               <p className="font-elegant text-xs md:text-sm text-primary/40">
-                contact@myntgirlfriend.com
+                myntgirlfriend@gmail.com
               </p>
-            </a>
+            </button>
 
             {/* Phone */}
             <a
-              href="tel:+919999999999"
+              href="tel:+919686239724"
               className="gold-border-card rounded-xl p-6 md:p-8 bg-card flex flex-col items-center gap-3 md:gap-4 transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-primary/30 flex items-center justify-center">

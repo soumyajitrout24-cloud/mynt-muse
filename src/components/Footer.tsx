@@ -15,12 +15,28 @@ const footerLinks = [
 
 const locations = ["Bangalore", "Chennai", "Hyderabad", "Mumbai", "Nashik"];
 
+const CONTACT_EMAIL = "myntgirlfriend@gmail.com";
+const CONTACT_PHONE = "+91 9686239724";
+
 const Footer = () => {
+  const handleEmailClick = () => {
+    const subject = "Enquiry about Mynt Girlfriend Services";
+
+    // Multi-line, formatted message
+    const body = `Hi Team,%0A%0AI am interested in your Mynt Girlfriend services and would like to know more.%0A%0APlease find my details below:%0A- Name:%0A- Contact Number:%0A- Preferred Date:%0A- Any special requests:%0A%0AThank you for your time.%0ABest regards,%0A[Your Name]`;
+
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(
+      subject
+    )}&body=${body}`;
+
+    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <footer className="bg-card border-t border-primary/20 pt-12 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-          
+
           {/* Brand */}
           <div>
             <h3 className="font-display text-xl md:text-2xl tracking-[0.15em] text-primary gold-glow mb-2">
@@ -73,7 +89,6 @@ const Footer = () => {
               Locations
             </h4>
 
-            {/* Clickable Locations */}
             <div className="flex flex-wrap gap-1.5 mb-5">
               {locations.map((loc) => (
                 <Link
@@ -87,22 +102,23 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* Contact Info */}
             <div className="space-y-1.5">
-              <a
-                href="mailto:contact@myntgirlfriend.com"
+              {/* Email with multi-line template */}
+              <button
+                onClick={handleEmailClick}
                 className="flex items-center gap-2 font-elegant text-[10px] md:text-xs text-primary/40 hover:text-primary transition-colors"
               >
                 <Mail className="w-3 h-3" />
-                contact@myntgirlfriend.com
-              </a>
+                {CONTACT_EMAIL}
+              </button>
 
+              {/* Phone */}
               <a
-                href="tel:+919999999999"
+                href={`tel:${CONTACT_PHONE}`}
                 className="flex items-center gap-2 font-elegant text-[10px] md:text-xs text-primary/40 hover:text-primary transition-colors"
               >
                 <Phone className="w-3 h-3" />
-                +91 99999 99999
+                {CONTACT_PHONE}
               </a>
             </div>
           </div>
