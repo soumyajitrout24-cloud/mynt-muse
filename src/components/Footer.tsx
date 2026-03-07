@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Mail, Phone } from "lucide-react";
 
@@ -19,17 +20,43 @@ const CONTACT_EMAIL = "myntgirlfriend@gmail.com";
 const CONTACT_PHONE = "+91 9686239724";
 
 const Footer = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleEmailClick = () => {
-    const subject = "Enquiry about Mynt Girlfriend Services";
+    const subject = "Enquiry - Mynt Girlfriend";
+    const body = `Hi Team,
 
-    // Multi-line, formatted message
-    const body = `Hi Team,%0A%0AI am interested in your Mynt Girlfriend services and would like to know more.%0A%0APlease find my details below:%0A- Name:%0A- Contact Number:%0A- Preferred Date:%0A- Any special requests:%0A%0AThank you for your time.%0ABest regards,%0A[Your Name]`;
+I am interested in your Mynt Girlfriend services and would like to know more.
 
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(
-      subject
-    )}&body=${body}`;
+Please find my details below:
+- Name:
+- Contact Number:
+- Preferred Date:
+- Any special requests:
 
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+Thank you for your time.
+Best regards,
+[Your Name]`;
+
+    if (isMobile) {
+      // Mobile: open mailto link
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+    } else {
+      // Desktop: open Gmail web
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -103,7 +130,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-1.5">
-              {/* Email with multi-line template */}
+              {/* Email */}
               <button
                 onClick={handleEmailClick}
                 className="flex items-center gap-2 font-elegant text-[10px] md:text-xs text-primary/40 hover:text-primary transition-colors"

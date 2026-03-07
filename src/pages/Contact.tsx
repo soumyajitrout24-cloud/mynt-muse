@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import { Phone, Mail, MessageCircle, MapPin } from "lucide-react";
 import FadeInSection from "@/components/FadeInSection";
 import { useNavigate } from "react-router-dom";
 
 const locations = ["Bangalore", "Chennai", "Hyderabad", "Mumbai", "Nashik"];
 
+const CONTACT_EMAIL = "myntgirlfriend@gmail.com";
+const CONTACT_PHONE = "+91 9686239724";
+
 const Contact = () => {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size to differentiate mobile vs desktop
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleWhatsApp = () => {
     window.open(
@@ -24,14 +37,21 @@ const Contact = () => {
   const handleEmailClick = () => {
     const subject = "Enquiry - Mynt Girlfriend";
 
-    // Multi-line formatted message
+    // Multi-line message
     const body = `Hi Team,%0A%0AI am interested in your Mynt Girlfriend services and would like to know more.%0A%0APlease find my details below:%0A- Name:%0A- Contact Number:%0A- Preferred Date:%0A- Any special requests:%0A%0AThank you for your time.%0ABest regards,%0A[Your Name]`;
 
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=myntgirlfriend@gmail.com&su=${encodeURIComponent(
-      subject
-    )}&body=${body}`;
-
-    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    if (isMobile) {
+      // Mobile: open native mail app
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+        subject
+      )}&body=${body}`;
+    } else {
+      // Desktop: open Gmail web
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_EMAIL}&su=${encodeURIComponent(
+        subject
+      )}&body=${body}`;
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    }
   };
 
   return (
@@ -88,13 +108,13 @@ const Contact = () => {
                 Email
               </h3>
               <p className="font-elegant text-xs md:text-sm text-primary/40">
-                myntgirlfriend@gmail.com
+                {CONTACT_EMAIL}
               </p>
             </button>
 
             {/* Phone */}
             <a
-              href="tel:+919686239724"
+              href={`tel:${CONTACT_PHONE}`}
               className="gold-border-card rounded-xl p-6 md:p-8 bg-card flex flex-col items-center gap-3 md:gap-4 transition-transform duration-300 hover:-translate-y-1"
             >
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-primary/30 flex items-center justify-center">
