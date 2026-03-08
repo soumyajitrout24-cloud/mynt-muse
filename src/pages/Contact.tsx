@@ -112,7 +112,7 @@ const Contact = () => {
               </p>
             </button>
 
-            {/* Phone */}
+          
             <a
               href={`tel:${CONTACT_PHONE}`}
               className="gold-border-card rounded-xl p-6 md:p-8 bg-card flex flex-col items-center gap-3 md:gap-4 transition-transform duration-300 hover:-translate-y-1"
