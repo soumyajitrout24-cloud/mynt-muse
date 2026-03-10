@@ -81,7 +81,7 @@ const LocationPage = () => {
                   loading="lazy"
                 />
 
-                {/* Watermark */}
+               
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <span className="text-white/70 text-xs sm:text-sm font-semibold tracking-wider rotate-[-20deg]">
                     MyntGirlfriend
@@ -93,7 +93,6 @@ const LocationPage = () => {
           </div>
         </div>
 
-        {/* AREAS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {areas.map((area, index) => (
             <div
