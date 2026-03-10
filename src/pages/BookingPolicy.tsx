@@ -95,7 +95,7 @@ const BookingPolicy = () => {
           </div>
         </FadeInSection>
 
-        {/* Timeline - mobile: simple stack, desktop: alternating */}
+    
         <div className="relative">
           {/* Vertical line - hidden on mobile */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-primary/40 via-primary/20 to-primary/40 rounded-full"></div>
@@ -115,7 +115,6 @@ const BookingPolicy = () => {
                     </div>
                   </div>
 
-                  {/* Circular Badge - hidden on mobile */}
                   <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 top-8 w-12 h-12 rounded-full bg-card border-2 border-primary/40 items-center justify-center text-lg font-bold text-primary shadow-gold">
                     {i + 1}
                   </div>
@@ -125,7 +124,7 @@ const BookingPolicy = () => {
           </div>
         </div>
 
-        {/* Important Notes */}
+      
         <FadeInSection delay={0.5}>
           <div className="bg-card rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 mt-16 md:mt-24 shadow-luxury border border-primary/20">
             <h2 className="font-display text-xl sm:text-2xl md:text-3xl text-primary mb-5 md:mb-6 text-center">Important Notes</h2>
